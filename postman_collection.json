@@ -1,0 +1,625 @@
+{
+    "info": {
+        "_postman_id": "srv-produtos-ibama",
+        "name": "IBAMA - Produtos",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Categorias",
+            "item": [
+                {
+                    "name": "Criar Categoria",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"nome\": \"Mudas e Plantas Nativas\",\n  \"descricao\": \"Categoria para mudas e plantas nativas brasileiras\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/categorias",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "categorias"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"nome\": \"Mudas e Plantas Nativas\",\n  \"descricao\": \"Categoria para mudas e plantas nativas brasileiras\"\n}"
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8080/api/categorias",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "categorias"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": [],
+                            "body": "{\n  \"id\": 1,\n  \"nome\": \"Mudas e Plantas Nativas\",\n  \"descricao\": \"Categoria para mudas e plantas nativas brasileiras\",\n  \"status\": \"ATIVA\",\n  \"dataHoraRegistro\": \"05/04/2025 12:00:00\",\n  \"dataHoraAlteracao\": \"05/04/2025 12:00:00\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Buscar Categoria",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8080/api/categorias/1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "categorias",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "http://localhost:8080/api/categorias/1",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "categorias",
+                                        "1"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": [],
+                            "body": "{\n  \"id\": 1,\n  \"nome\": \"Mudas e Plantas Nativas\",\n  \"descricao\": \"Categoria para mudas e plantas nativas brasileiras\",\n  \"status\": \"ATIVA\",\n  \"dataHoraRegistro\": \"05/04/2025 12:00:00\",\n  \"dataHoraAlteracao\": \"05/04/2025 12:00:00\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listar Categorias",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8080/api/categorias",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "categorias"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "http://localhost:8080/api/categorias",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "categorias"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": [],
+                            "body": "[\n  {\n    \"id\": 1,\n    \"nome\": \"Mudas e Plantas Nativas\",\n    \"descricao\": \"Categoria para mudas e plantas nativas brasileiras\",\n    \"status\": \"ATIVA\",\n    \"dataHoraRegistro\": \"05/04/2025 12:00:00\",\n    \"dataHoraAlteracao\": \"05/04/2025 12:00:00\"\n  }\n]"
+                        }
+                    ]
+                },
+                {
+                    "name": "Atualizar Categoria",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"nome\": \"Mudas e Plantas Nativas\",\n  \"descricao\": \"Categoria atualizada para mudas e plantas nativas brasileiras\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/categorias/1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "categorias",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "PUT",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"nome\": \"Mudas e Plantas Nativas\",\n  \"descricao\": \"Categoria atualizada para mudas e plantas nativas brasileiras\"\n}"
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8080/api/categorias/1",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "categorias",
+                                        "1"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": [],
+                            "body": "{\n  \"id\": 1,\n  \"nome\": \"Mudas e Plantas Nativas\",\n  \"descricao\": \"Categoria atualizada para mudas e plantas nativas brasileiras\",\n  \"status\": \"ATIVA\",\n  \"dataHoraRegistro\": \"05/04/2025 12:00:00\",\n  \"dataHoraAlteracao\": \"05/04/2025 12:30:00\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Inativar Categoria",
+                    "request": {
+                        "method": "PATCH",
+                        "url": {
+                            "raw": "http://localhost:8080/api/categorias/1/inativar",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "categorias",
+                                "1",
+                                "inativar"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "PATCH",
+                                "url": {
+                                    "raw": "http://localhost:8080/api/categorias/1/inativar",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "categorias",
+                                        "1",
+                                        "inativar"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": [],
+                            "body": "{\n  \"id\": 1,\n  \"nome\": \"Mudas e Plantas Nativas\",\n  \"descricao\": \"Categoria atualizada para mudas e plantas nativas brasileiras\",\n  \"status\": \"INATIVA\",\n  \"dataHoraRegistro\": \"05/04/2025 12:00:00\",\n  \"dataHoraAlteracao\": \"05/04/2025 12:45:00\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Ativar Categoria",
+                    "request": {
+                        "method": "PATCH",
+                        "url": {
+                            "raw": "http://localhost:8080/api/categorias/1/ativar",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "categorias",
+                                "1",
+                                "ativar"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "PATCH",
+                                "url": {
+                                    "raw": "http://localhost:8080/api/categorias/1/ativar",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "categorias",
+                                        "1",
+                                        "ativar"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": [],
+                            "body": "{\n  \"id\": 1,\n  \"nome\": \"Mudas e Plantas Nativas\",\n  \"descricao\": \"Categoria atualizada para mudas e plantas nativas brasileiras\",\n  \"status\": \"ATIVA\",\n  \"dataHoraRegistro\": \"05/04/2025 12:00:00\",\n  \"dataHoraAlteracao\": \"05/04/2025 12:50:00\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Deletar Categoria",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "http://localhost:8080/api/categorias/1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "categorias",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "DELETE",
+                                "url": {
+                                    "raw": "http://localhost:8080/api/categorias/1",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "categorias",
+                                        "1"
+                                    ]
+                                }
+                            },
+                            "status": "No Content",
+                            "code": 204,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Produtos",
+            "item": [
+                {
+                    "name": "Criar Produto",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"nome\": \"Muda de Ipê Amarelo\",\n  \"descricao\": \"Muda de Ipê Amarelo (Handroanthus chrysotrichus) com 30cm de altura\",\n  \"preco\": 25.90,\n  \"quantidadeEstoque\": 100,\n  \"categoriaId\": 1\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/produtos",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "produtos"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"nome\": \"Muda de Ipê Amarelo\",\n  \"descricao\": \"Muda de Ipê Amarelo (Handroanthus chrysotrichus) com 30cm de altura\",\n  \"preco\": 25.90,\n  \"quantidadeEstoque\": 100,\n  \"categoriaId\": 1\n}"
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8080/api/produtos",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "produtos"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": [],
+                            "body": "{\n  \"id\": 1,\n  \"nome\": \"Muda de Ipê Amarelo\",\n  \"descricao\": \"Muda de Ipê Amarelo (Handroanthus chrysotrichus) com 30cm de altura\",\n  \"preco\": 25.90,\n  \"quantidadeEstoque\": 100,\n  \"categoriaId\": 1,\n  \"dataHoraRegistro\": \"05/04/2025 12:00:00\",\n  \"dataHoraAlteracao\": \"05/04/2025 12:00:00\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Buscar Produto",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8080/api/produtos/1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "produtos",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "http://localhost:8080/api/produtos/1",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "produtos",
+                                        "1"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": [],
+                            "body": "{\n  \"id\": 1,\n  \"nome\": \"Muda de Ipê Amarelo\",\n  \"descricao\": \"Muda de Ipê Amarelo (Handroanthus chrysotrichus) com 30cm de altura\",\n  \"preco\": 25.90,\n  \"quantidadeEstoque\": 100,\n  \"categoriaId\": 1,\n  \"dataHoraRegistro\": \"05/04/2025 12:00:00\",\n  \"dataHoraAlteracao\": \"05/04/2025 12:00:00\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Listar Produtos",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8080/api/produtos",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "produtos"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "http://localhost:8080/api/produtos",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "produtos"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": [],
+                            "body": "[\n  {\n    \"id\": 1,\n    \"nome\": \"Muda de Ipê Amarelo\",\n    \"descricao\": \"Muda de Ipê Amarelo (Handroanthus chrysotrichus) com 30cm de altura\",\n    \"preco\": 25.90,\n    \"quantidadeEstoque\": 100,\n    \"categoriaId\": 1,\n    \"dataHoraRegistro\": \"05/04/2025 12:00:00\",\n    \"dataHoraAlteracao\": \"05/04/2025 12:00:00\"\n  }\n]"
+                        }
+                    ]
+                },
+                {
+                    "name": "Atualizar Produto",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"nome\": \"Muda de Ipê Amarelo\",\n  \"descricao\": \"Muda de Ipê Amarelo (Handroanthus chrysotrichus) com 30cm de altura\",\n  \"preco\": 25.90,\n  \"quantidadeEstoque\": 100,\n  \"categoriaId\": 1\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/produtos/1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "produtos",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "PUT",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"nome\": \"Muda de Ipê Amarelo\",\n  \"descricao\": \"Muda de Ipê Amarelo (Handroanthus chrysotrichus) com 30cm de altura\",\n  \"preco\": 25.90,\n  \"quantidadeEstoque\": 100,\n  \"categoriaId\": 1\n}"
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8080/api/produtos/1",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "produtos",
+                                        "1"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": [],
+                            "body": "{\n  \"id\": 1,\n  \"nome\": \"Muda de Ipê Amarelo\",\n  \"descricao\": \"Muda de Ipê Amarelo (Handroanthus chrysotrichus) com 30cm de altura\",\n  \"preco\": 25.90,\n  \"quantidadeEstoque\": 100,\n  \"categoriaId\": 1,\n  \"dataHoraRegistro\": \"05/04/2025 12:00:00\",\n  \"dataHoraAlteracao\": \"05/04/2025 12:30:00\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Deletar Produto",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "http://localhost:8080/api/produtos/1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "produtos",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "DELETE",
+                                "url": {
+                                    "raw": "http://localhost:8080/api/produtos/1",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "produtos",
+                                        "1"
+                                    ]
+                                }
+                            },
+                            "status": "No Content",
+                            "code": 204,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
