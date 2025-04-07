@@ -43,6 +43,7 @@ public class CategoriaController {
         Categoria categoria = new Categoria();
         categoria.setNome(categoriaDTO.getNome());
         categoria.setDescricao(categoriaDTO.getDescricao());
+        categoria.setStatus(categoriaDTO.getStatus());
 
         Categoria categoriaCriada = criarCategoriaUseCase.execute(categoria);
         return ResponseEntity.ok(new CategoriaDTO(categoriaCriada));

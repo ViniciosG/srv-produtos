@@ -18,6 +18,7 @@ public class CriarCategoriaUseCase {
             throw new CategoriaDuplicadaException(categoria.getNome());
         }
 
+        categoria.onCreate();
         return categoriaRepository.save(categoria);
     }
 }

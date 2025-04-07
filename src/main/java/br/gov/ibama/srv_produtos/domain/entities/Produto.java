@@ -69,4 +69,12 @@ public class Produto {
     public void ativar() {
         this.status = StatusProduto.ATIVO;
     }
+
+    public void adicionarEstoque(Integer quantidade) {
+        this.quantidadeEstoque += quantidade;
+    }
+
+    public void removerEstoque(Integer quantidade) {
+        this.quantidadeEstoque -= quantidade;
+    }
 }
