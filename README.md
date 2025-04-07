@@ -1,6 +1,6 @@
-# API de Produtos - IBAMA
+# API de Produtos
 
-API para gerenciamento de produtos e categorias do IBAMA.
+API para gerenciamento de produtos e categorias.
 
 ## 🚀 Tecnologias Utilizadas
 
