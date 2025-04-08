@@ -2,6 +2,8 @@ package br.gov.ibama.srv_produtos.infrastructure.security;
 
 import java.util.Date;
 
+import javax.crypto.SecretKey;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -9,15 +11,18 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtTokenProvider {
 
-    @Value("${app.jwt-secret}")
-    private String jwtSecret;
+    private final SecretKey key;
+    private final int jwtExpirationInMs;
 
-    @Value("${app.jwt-expiration-milliseconds}")
-    private int jwtExpirationInMs;
+    public JwtTokenProvider(@Value("${app.jwt-expiration-milliseconds}") int jwtExpirationInMs) {
+        this.key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+        this.jwtExpirationInMs = jwtExpirationInMs;
+    }
 
     public String generateToken(Authentication authentication) {
         String username = authentication.getName();
@@ -28,13 +33,14 @@ public class JwtTokenProvider {
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(expireDate)
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .signWith(key)
                 .compact();
     }
 
     public String getUsernameFromJWT(String token) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(jwtSecret)
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
 
@@ -43,7 +49,10 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
+            Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token);
             return true;
         } catch (Exception ex) {
             return false;
