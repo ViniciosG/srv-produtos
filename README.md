@@ -1,6 +1,113 @@
-# API de Produtos
+# Serviço de Produtos - IBAMA
 
-API para gerenciamento de produtos e categorias.
+## Descrição
+Serviço para gerenciamento de produtos do IBAMA.
+
+## Tecnologias
+- Java 17
+- Spring Boot 3.2.3
+- Spring Security
+- JWT (JSON Web Token)
+- MySQL
+- Maven
+- Lombok
+
+## Autenticação
+
+### Endpoints
+
+#### Criar Usuário
+```http
+POST /api/auth/register
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin123",
+    "nome": "Administrador",
+    "email": "admin@ibama.gov.br"
+}
+```
+
+Resposta:
+```json
+{
+    "id": 1,
+    "username": "admin",
+    "nome": "Administrador",
+    "email": "admin@ibama.gov.br",
+    "dataHoraRegistro": "05/04/2025 12:00:00"
+}
+```
+
+#### Login
+```http
+POST /api/auth/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin123"
+}
+```
+
+Resposta:
+```json
+{
+    "token": "eyJhbGciOiJIUzUxMiJ9...",
+    "type": "Bearer"
+}
+```
+
+### Uso do Token
+Após obter o token JWT, inclua-o no header de todas as requisições que necessitam autenticação:
+
+```http
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9...
+```
+
+## Endpoints Protegidos
+Todos os endpoints abaixo requerem autenticação via token JWT:
+
+### Categorias
+- `GET /api/categorias` - Listar categorias
+- `GET /api/categorias/{id}` - Buscar categoria por ID
+- `POST /api/categorias` - Criar categoria
+- `PUT /api/categorias/{id}` - Atualizar categoria
+- `PATCH /api/categorias/{id}/inativar` - Inativar categoria
+- `PATCH /api/categorias/{id}/ativar` - Ativar categoria
+- `DELETE /api/categorias/{id}` - Deletar categoria
+
+### Produtos
+- `GET /api/produtos` - Listar produtos
+- `GET /api/produtos/{id}` - Buscar produto por ID
+- `POST /api/produtos` - Criar produto
+- `PUT /api/produtos/{id}` - Atualizar produto
+- `DELETE /api/produtos/{id}` - Deletar produto
+
+## Configuração
+1. Clone o repositório
+2. Configure o banco de dados no `application.properties`
+3. Execute `mvn clean install`
+4. Execute a aplicação com `mvn spring-boot:run`
+
+## Variáveis de Ambiente
+- `SPRING_DATASOURCE_URL`: URL do banco de dados
+- `SPRING_DATASOURCE_USERNAME`: Usuário do banco
+- `SPRING_DATASOURCE_PASSWORD`: Senha do banco
+- `APP_JWT_SECRET`: Chave secreta para JWT
+
+## Testes
+Execute os testes com:
+```bash
+mvn test
+```
+
+## Documentação
+A documentação da API está disponível em:
+```
+http://localhost:8080/swagger-ui.html
+```
 
 ## 🚀 Tecnologias Utilizadas
 

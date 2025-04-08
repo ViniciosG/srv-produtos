@@ -6,6 +6,133 @@
     },
     "item": [
         {
+            "name": "Autenticação",
+            "item": [
+                {
+                    "name": "Criar Usuário",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\",\n  \"nome\": \"Administrador\",\n  \"email\": \"admin@ibama.gov.br\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/auth/register",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\",\n  \"nome\": \"Administrador\",\n  \"email\": \"admin@ibama.gov.br\"\n}"
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8080/api/auth/register",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "auth",
+                                        "register"
+                                    ]
+                                }
+                            },
+                            "status": "Created",
+                            "code": 201,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": [],
+                            "body": "{\n  \"id\": 1,\n  \"username\": \"admin\",\n  \"nome\": \"Administrador\",\n  \"email\": \"admin@ibama.gov.br\",\n  \"dataHoraRegistro\": \"05/04/2025 12:00:00\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Login",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/auth/login",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "auth",
+                                "login"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Response",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+                                },
+                                "url": {
+                                    "raw": "http://localhost:8080/api/auth/login",
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "8080",
+                                    "path": [
+                                        "api",
+                                        "auth",
+                                        "login"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [],
+                            "cookie": [],
+                            "body": "{\n  \"token\": \"eyJhbGciOiJIUzUxMiJ9...\",\n  \"type\": \"Bearer\"\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Categorias",
             "item": [
                 {
@@ -16,6 +143,10 @@
                             {
                                 "key": "Content-Type",
                                 "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
@@ -71,6 +202,12 @@
                     "name": "Buscar Categoria",
                     "request": {
                         "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
                         "url": {
                             "raw": "http://localhost:8080/api/categorias/1",
                             "protocol": "http",
@@ -90,6 +227,7 @@
                             "name": "Response",
                             "originalRequest": {
                                 "method": "GET",
+                                "header": [],
                                 "url": {
                                     "raw": "http://localhost:8080/api/categorias/1",
                                     "protocol": "http",
@@ -117,6 +255,12 @@
                     "name": "Listar Categorias",
                     "request": {
                         "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
                         "url": {
                             "raw": "http://localhost:8080/api/categorias",
                             "protocol": "http",
@@ -135,6 +279,7 @@
                             "name": "Response",
                             "originalRequest": {
                                 "method": "GET",
+                                "header": [],
                                 "url": {
                                     "raw": "http://localhost:8080/api/categorias",
                                     "protocol": "http",
@@ -165,6 +310,10 @@
                             {
                                 "key": "Content-Type",
                                 "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
@@ -222,6 +371,12 @@
                     "name": "Inativar Categoria",
                     "request": {
                         "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
                         "url": {
                             "raw": "http://localhost:8080/api/categorias/1/inativar",
                             "protocol": "http",
@@ -242,6 +397,7 @@
                             "name": "Response",
                             "originalRequest": {
                                 "method": "PATCH",
+                                "header": [],
                                 "url": {
                                     "raw": "http://localhost:8080/api/categorias/1/inativar",
                                     "protocol": "http",
@@ -270,6 +426,12 @@
                     "name": "Ativar Categoria",
                     "request": {
                         "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
                         "url": {
                             "raw": "http://localhost:8080/api/categorias/1/ativar",
                             "protocol": "http",
@@ -290,6 +452,7 @@
                             "name": "Response",
                             "originalRequest": {
                                 "method": "PATCH",
+                                "header": [],
                                 "url": {
                                     "raw": "http://localhost:8080/api/categorias/1/ativar",
                                     "protocol": "http",
@@ -318,6 +481,12 @@
                     "name": "Deletar Categoria",
                     "request": {
                         "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
                         "url": {
                             "raw": "http://localhost:8080/api/categorias/1",
                             "protocol": "http",
@@ -337,6 +506,7 @@
                             "name": "Response",
                             "originalRequest": {
                                 "method": "DELETE",
+                                "header": [],
                                 "url": {
                                     "raw": "http://localhost:8080/api/categorias/1",
                                     "protocol": "http",
@@ -372,6 +542,10 @@
                             {
                                 "key": "Content-Type",
                                 "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
@@ -427,6 +601,12 @@
                     "name": "Buscar Produto",
                     "request": {
                         "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
                         "url": {
                             "raw": "http://localhost:8080/api/produtos/1",
                             "protocol": "http",
@@ -446,6 +626,7 @@
                             "name": "Response",
                             "originalRequest": {
                                 "method": "GET",
+                                "header": [],
                                 "url": {
                                     "raw": "http://localhost:8080/api/produtos/1",
                                     "protocol": "http",
@@ -473,6 +654,12 @@
                     "name": "Listar Produtos",
                     "request": {
                         "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
                         "url": {
                             "raw": "http://localhost:8080/api/produtos",
                             "protocol": "http",
@@ -491,6 +678,7 @@
                             "name": "Response",
                             "originalRequest": {
                                 "method": "GET",
+                                "header": [],
                                 "url": {
                                     "raw": "http://localhost:8080/api/produtos",
                                     "protocol": "http",
@@ -521,6 +709,10 @@
                             {
                                 "key": "Content-Type",
                                 "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
@@ -578,6 +770,12 @@
                     "name": "Deletar Produto",
                     "request": {
                         "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
                         "url": {
                             "raw": "http://localhost:8080/api/produtos/1",
                             "protocol": "http",
@@ -597,6 +795,7 @@
                             "name": "Response",
                             "originalRequest": {
                                 "method": "DELETE",
+                                "header": [],
                                 "url": {
                                     "raw": "http://localhost:8080/api/produtos/1",
                                     "protocol": "http",
