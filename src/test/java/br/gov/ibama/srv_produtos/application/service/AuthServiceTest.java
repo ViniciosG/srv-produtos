@@ -19,8 +19,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import br.gov.ibama.srv_produtos.domain.dto.LoginDTO;
-import br.gov.ibama.srv_produtos.domain.entity.Usuario;
+import br.gov.ibama.srv_produtos.api.dtos.LoginDTO;
+import br.gov.ibama.srv_produtos.api.dtos.UsuarioDTO;
+import br.gov.ibama.srv_produtos.domain.entities.Usuario;
 import br.gov.ibama.srv_produtos.infrastructure.persistence.repositories.UsuarioRepository;
 import br.gov.ibama.srv_produtos.infrastructure.security.JwtTokenProvider;
 
@@ -43,6 +44,7 @@ class AuthServiceTest {
     private AuthService authService;
 
     private LoginDTO loginDTO;
+    private UsuarioDTO usuarioDTO;
     private Usuario usuario;
 
     @BeforeEach
@@ -51,24 +53,29 @@ class AuthServiceTest {
         loginDTO.setUsername("testuser");
         loginDTO.setPassword("password");
 
+        usuarioDTO = new UsuarioDTO();
+        usuarioDTO.setUsername("testuser");
+        usuarioDTO.setPassword("password");
+        usuarioDTO.setNome("Test User");
+        usuarioDTO.setEmail("test@example.com");
+
         usuario = new Usuario();
         usuario.setUsername("testuser");
         usuario.setPassword("encodedPassword");
+        usuario.setNome("Test User");
+        usuario.setEmail("test@example.com");
     }
 
     @Test
     void login_ShouldReturnToken_WhenCredentialsAreValid() {
-        // Arrange
         Authentication authentication = mock(Authentication.class);
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
                 .thenReturn(authentication);
         when(jwtTokenProvider.generateToken(authentication))
                 .thenReturn("jwtToken");
 
-        // Act
         String token = authService.login(loginDTO);
 
-        // Assert
         assertNotNull(token);
         assertEquals("jwtToken", token);
         verify(authenticationManager).authenticate(any(UsernamePasswordAuthenticationToken.class));
@@ -77,12 +84,37 @@ class AuthServiceTest {
 
     @Test
     void login_ShouldThrowException_WhenAuthenticationFails() {
-        // Arrange
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
                 .thenThrow(new RuntimeException("Authentication failed"));
 
-        // Act & Assert
         assertThrows(RuntimeException.class, () -> authService.login(loginDTO));
         verify(authenticationManager).authenticate(any(UsernamePasswordAuthenticationToken.class));
+    }
+
+    @Test
+    void register_ShouldCreateUser_WhenDataIsValid() {
+        when(passwordEncoder.encode(any())).thenReturn("encodedPassword");
+        when(usuarioRepository.save(any())).thenReturn(usuario);
+
+        Usuario savedUsuario = authService.register(usuarioDTO);
+
+        assertNotNull(savedUsuario);
+        assertEquals(usuarioDTO.getUsername(), savedUsuario.getUsername());
+        assertEquals("encodedPassword", savedUsuario.getPassword());
+        assertEquals(usuarioDTO.getNome(), savedUsuario.getNome());
+        assertEquals(usuarioDTO.getEmail(), savedUsuario.getEmail());
+
+        verify(passwordEncoder).encode(usuarioDTO.getPassword());
+        verify(usuarioRepository).save(any(Usuario.class));
+    }
+
+    @Test
+    void register_ShouldThrowException_WhenRepositoryFails() {
+        when(passwordEncoder.encode(any())).thenReturn("encodedPassword");
+        when(usuarioRepository.save(any())).thenThrow(new RuntimeException("Database error"));
+
+        assertThrows(RuntimeException.class, () -> authService.register(usuarioDTO));
+        verify(passwordEncoder).encode(usuarioDTO.getPassword());
+        verify(usuarioRepository).save(any(Usuario.class));
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import br.gov.ibama.srv_produtos.domain.dto.LoginDTO;
+import br.gov.ibama.srv_produtos.api.dtos.LoginDTO;
 import br.gov.ibama.srv_produtos.infrastructure.security.JwtTokenProvider;
 
 @Service

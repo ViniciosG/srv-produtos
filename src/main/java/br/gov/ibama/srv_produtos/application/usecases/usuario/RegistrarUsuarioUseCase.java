@@ -4,7 +4,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.gov.ibama.srv_produtos.api.dtos.UsuarioDTO;
-import br.gov.ibama.srv_produtos.domain.entity.Usuario;
+import br.gov.ibama.srv_produtos.domain.entities.Usuario;
 import br.gov.ibama.srv_produtos.infrastructure.persistence.repositories.UsuarioRepository;
 
 @Service

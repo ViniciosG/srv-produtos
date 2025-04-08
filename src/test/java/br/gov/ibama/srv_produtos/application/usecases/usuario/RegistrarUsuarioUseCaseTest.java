@@ -3,21 +3,20 @@ package br.gov.ibama.srv_produtos.application.usecases.usuario;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import static org.mockito.ArgumentMatchers.any;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import br.gov.ibama.srv_produtos.api.dtos.UsuarioDTO;
-import br.gov.ibama.srv_produtos.domain.entity.Usuario;
+import br.gov.ibama.srv_produtos.domain.entities.Usuario;
 import br.gov.ibama.srv_produtos.infrastructure.persistence.repositories.UsuarioRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -45,7 +44,7 @@ class RegistrarUsuarioUseCaseTest {
 
     @Test
     void execute_ShouldCreateUser_WhenUsernameAndEmailAreAvailable() {
-        // Arrange
+
         when(usuarioRepository.existsByUsername(any())).thenReturn(false);
         when(usuarioRepository.existsByEmail(any())).thenReturn(false);
         when(passwordEncoder.encode(any())).thenReturn("encodedPassword");
@@ -69,10 +68,9 @@ class RegistrarUsuarioUseCaseTest {
 
     @Test
     void execute_ShouldThrowException_WhenUsernameAlreadyExists() {
-        // Arrange
+
         when(usuarioRepository.existsByUsername(any())).thenReturn(true);
 
-        // Act & Assert
         assertThrows(RuntimeException.class, () -> registrarUsuarioUseCase.execute(usuarioDTO));
         verify(usuarioRepository).existsByUsername(usuarioDTO.getUsername());
         verify(usuarioRepository, never()).existsByEmail(any());
@@ -81,11 +79,10 @@ class RegistrarUsuarioUseCaseTest {
 
     @Test
     void execute_ShouldThrowException_WhenEmailAlreadyExists() {
-        // Arrange
+
         when(usuarioRepository.existsByUsername(any())).thenReturn(false);
         when(usuarioRepository.existsByEmail(any())).thenReturn(true);
 
-        // Act & Assert
         assertThrows(RuntimeException.class, () -> registrarUsuarioUseCase.execute(usuarioDTO));
         verify(usuarioRepository).existsByUsername(usuarioDTO.getUsername());
         verify(usuarioRepository).existsByEmail(usuarioDTO.getEmail());

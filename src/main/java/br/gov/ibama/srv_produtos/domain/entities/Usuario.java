@@ -1,4 +1,4 @@
-package br.gov.ibama.srv_produtos.domain.entity;
+package br.gov.ibama.srv_produtos.domain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

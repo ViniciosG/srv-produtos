@@ -1,4 +1,4 @@
-package br.gov.ibama.srv_produtos.domain.dto;
+package br.gov.ibama.srv_produtos.api.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

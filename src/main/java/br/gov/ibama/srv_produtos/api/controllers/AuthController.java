@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.gov.ibama.srv_produtos.api.dtos.LoginDTO;
 import br.gov.ibama.srv_produtos.api.dtos.LoginResponseDTO;
 import br.gov.ibama.srv_produtos.api.dtos.UsuarioDTO;
 import br.gov.ibama.srv_produtos.application.service.AuthService;
-import br.gov.ibama.srv_produtos.domain.dto.LoginDTO;
-import br.gov.ibama.srv_produtos.domain.entity.Usuario;
+import br.gov.ibama.srv_produtos.domain.entities.Usuario;
 
 @RestController
 @RequestMapping("/api/auth")

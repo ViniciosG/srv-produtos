@@ -49,13 +49,4 @@ public class JwtTokenProvider {
             return false;
         }
     }
-
-    public String getUsername(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(jwtSecret.getBytes())
-                .build()
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
-    }
 }
